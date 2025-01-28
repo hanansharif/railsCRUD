@@ -1,16 +1,52 @@
+<%# <div id="friends"> %>
+  <%# <% @friends.each do |friend| %>
+    <%# <%= render friend %>
+    <%# <p> %>
+      <%# <%= link_to "Show this friend", friend %>
+    <%# </p> %>
+<%#  <% end %>
+<%# </div> %>
+
+
+
+
+
 <p style="color: green"><%= notice %></p>
 
 <% content_for :title, "Friends" %>
 
 <h1>Friends List</h1>
 
-<div id="friends">
-  <% @friends.each do |friend| %>
-    <%= render friend %>
-    <p>
-      <%= link_to "Show this friend", friend %>
-    </p>
-  <% end %>
-</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Twitter</th>
+      <th colspan="3" style="text-align: center;">Actions</th>
+    </tr>
+  </thead>
 
-<%= link_to "New friend", new_friend_path %>
+  <tbody>
+    <% @friends.each do |friend| %>
+      <tr>
+        <td><%= friend.first_nane %> <%= friend.last_name %></td>
+        <td><%= friend.email %></td>
+        <td><%= friend.phone %></td>
+        <td><%= friend.twitter %></td>
+        <td>
+          <%= link_to "Show", friend_path(friend), class: "btn btn-primary" %>
+        </td>
+        <td>
+          <%= link_to "Edit", edit_friend_path(friend), class: "btn btn-warning" %>
+        </td>
+        <td>
+          <%= button_to "Destroy", friend, method: :delete, data: { turbo_confirm: "Are you sure you want to delete this friend?" }, class: "btn btn-danger" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to "New friend", new_friend_path, class: "btn btn-success" %>

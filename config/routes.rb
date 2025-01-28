@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :buddies
   resources :friends
   get "home/index"
   root "home#index"
