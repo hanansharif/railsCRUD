@@ -26,17 +26,20 @@
         <th>Email</th>
         <th>Phone</th>
         <th>Twitter</th>
+        <th>User ID </th>
         <th colspan="3" style="text-align: center;">Actions</th>
       </tr>
     </thead>
 
     <tbody>
       <% @friends.each do |friend| %>
+        <% # if friend.user == current_user %>
         <tr>
           <td><%= friend.first_nane %> <%= friend.last_name %></td> <!-- Fixed typo: first_nane -> first_name -->
           <td><%= friend.email %></td>
           <td><%= friend.phone %></td>
           <td><%= friend.twitter %></td>
+          <td><%= friend.user_id %></td>
           <td>
             <%= link_to "Show", friend_path(friend), class: "btn btn-secondary" %>
           </td>
@@ -47,6 +50,7 @@
             <%= button_to "Destroy", friend, method: :delete, data: { turbo_confirm: "Are you sure you want to delete this friend?" }, class: "btn btn-danger" %>
           </td>
         </tr>
+        <% # end %>
       <% end %>
     </tbody>
   </table>
