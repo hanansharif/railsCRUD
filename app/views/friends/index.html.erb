@@ -7,50 +7,49 @@
 <%#  <% end %>
 <%# </div> %>
 
-
 <% if user_signed_in? %>
-
-<p style="color: green"><% notice %></p>
-
-<% content_for :title, "Friends" %>
-
-<div class="table-responsive rounded"> <!-- Add rounded class here -->
-  <table class="table table-striped table-bordered table-hover">
-    <thead class="table-dark">
-      <tr>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Phone</th>
-        <th>Twitter</th>
-        <th class="col-1">User ID </th>
-        <%# <th colspan="3" style="text-align: center;">Actions</th> %>
-        <th class="col-1"></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @friends.each do |friend| %>
-        <% # if friend.user == current_user %>
+  <p style="color: green"><% notice %></p>
+  <% content_for :title, "Friends" %>
+  <div class="table-responsive rounded"> <!-- Add rounded class here -->
+    <table class="table table-striped table-bordered table-hover">
+      <thead class="table-dark">
         <tr>
-          <td>
-            <%= link_to friend.first_nane + " " + friend.last_name, friend_path(friend) %>
-          </td> <!-- Fixed typo: first_nane -> first_name -->
-          <td><%= friend.email %></td>
-          <td><%= friend.phone %></td>
-          <td><%= friend.twitter %></td>
-          <td><%= friend.user_id %></td>
-          <td>
-            <%= button_to "Delete", friend, method: :delete, data: { turbo_confirm: "Are you sure you want to delete this friend?" }, class: "btn btn-outline-danger px-4 btn-sm" %>
-          </td>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Twitter</th>
+          <th class="col-1">User ID </th>
+          <%# <th colspan="2" style="text-align: center;">Actions</th> %>
+          <th class="col-1"></th>
         </tr>
-        <% # end %>
-      <% end %>
-    </tbody>
-  </table>
-</div>
+      </thead>
 
-<%= link_to "New friend", new_friend_path, class: "btn btn-secondary" %>
+      <tbody>
+        <% @friends.each do |friend| %>
+          <% # if friend.user == current_user %>
+          <tr>
+            <td>
+              <%= link_to friend.first_nane + " " + friend.last_name, friend_path(friend) %>
+            </td> <!-- Fixed typo: first_nane -> first_name -->
+            <td><%= friend.email %></td>
+            <td><%= friend.phone %></td>
+            <td><%= friend.twitter %></td>
+            <td><%= friend.user_id %></td>
+            <%# <td> %>
+              <% link_to "Edit", edit_friend_path(friend), class: "btn btn-secondary" %>
+            <%# </td> %>
+            <td>
+              <%= button_to "Delete ", friend, method: :delete, data: { turbo_confirm: "Are you sure you want to delete this friend?" }, class: "btn btn-outline-danger btn-sm px-4" %>
+            </td>
+          </tr>
+          <% # end %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <%= link_to "New friend", new_friend_path, class: "btn btn-secondary" %>
 <% else %>
-<h1>Hello World !</h1>
-<p>This is my first rails webpage !!!</p>
+  <h1>Hello World !</h1>
+  <p>This is my first rails webpage !!!</p>
 <% end %>
