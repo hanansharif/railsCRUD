@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   resources :buddies
   resources :friends
   get "home/index"
-  root "home#index"
+  # root "home#index"
+  root "friends#index"
   get "home/about"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
